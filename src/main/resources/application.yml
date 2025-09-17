@@ -1,0 +1,39 @@
+server:
+  port: 8072
+
+spring:
+  application:
+    name: "gatewayserver"
+  config:
+    import: "optional:configserver:http://localhost:8071/"
+  cloud:
+    gateway:
+      server:
+        discovery:
+          locator:
+            enabled: true
+            lower-case-service-id: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    gateway: enabled
+#      access: unrestricted
+  info:
+    env:
+      enabled: true
+
+info:
+  app:
+    name: "gatewayserver"
+    description: "Gatewayserver Application"
+    version: "1.0.0"
+
+logging:
+  level:
+    com:
+      encl:
+        gatewayserver: DEBUG
